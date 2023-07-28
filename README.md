@@ -1,9 +1,9 @@
-![repo_icon](../doc/atedgeicon.png)
+![repo_icon](https://github.com/rayk/wrkateedge/blob/master/doc/atedgeicon.png)
 # Wrkatedge
 
-An implementation of a simple working at the edge architecture intended as a reference for a broader implementation. As
+An implementation of a simple working-at-the-edge architecture is intended as a reference for a broader implementation. As
 a reference implementation, this project/repository does include 'extra file', which are not expected to be found in 
-a production implementation. For example IDE and environment files are included to demonstrate changes to the
+a production implementation. For example, IDE and environment files are included to demonstrate changes to the
 development workflow and environment.
 
 As security and integration with external providers is beyond the scope of this reference, the included env files can be
