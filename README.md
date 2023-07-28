@@ -1,4 +1,7 @@
 <img style='vertical-align:middle;' src="https://github.com/rayk/wrkateedge/blob/master/doc/atedgeicon.png" width="100px">
+<div style='vertical-align:middle; display:inline;'>
+WrkAteEdge Reference Implmentation
+</div>
 
 # Wrkatedge
 
