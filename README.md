@@ -1,4 +1,4 @@
-![repo_icon](https://github.com/rayk/wrkateedge/blob/master/doc/atedgeicon.png)
+<img src="https://github.com/rayk/wrkateedge/blob/master/doc/atedgeicon.png" width="50px">
 # Wrkatedge
 
 An implementation of a simple working-at-the-edge architecture is intended as a reference for a broader implementation. As
