@@ -1,0 +1,7 @@
+{
+  "APP_NAME": "WrkAteEdge",
+  "APP_VERSION": "0.0.1",
+  "LOG_LEVEL": 2,
+  "SHOW_DEBUG_BANNER": false,
+  "OBSERVE_PROVIDERS": true
+}

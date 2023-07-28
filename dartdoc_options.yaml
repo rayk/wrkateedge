@@ -1,0 +1,19 @@
+dartdoc:
+  categories:
+    "GUI":
+      name: GUI
+      markdown: doc/notes/gui.md
+    "Config":
+      markdown: doc/notes/config.md
+      name: Config
+    "DataFlow":
+      name: DataFlow
+    "Structure":
+      name: Structure
+      markdown: doc/notes/structure.md
+    "Startup":
+      name: Startup
+      markdown: doc/notes/startup.md
+    categoryOrder: ["Structure", "Config", "Startup", "GUI", "DataFlow"]
+    showUndocumentedCategories: false
+    nodoc: ['lib/**/*.g.dart', 'lib/**/*.freeze.dart']
