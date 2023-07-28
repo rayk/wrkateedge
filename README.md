@@ -3,9 +3,6 @@
 <h2>WrkAteEdge Reference Implementation</h2>
   <img style='vertical-align:middle;' src="https://github.com/rayk/wrkateedge/blob/master/doc/atedgeicon.png" width="100px">
 </div>
-
-# Wrkatedge
-
 An implementation of a simple working-at-the-edge architecture is intended as a reference for a broader implementation. As
 a reference implementation, this project/repository does include 'extra file', which are not expected to be found in 
 a production implementation. For example, IDE and environment files are included to demonstrate changes to the
