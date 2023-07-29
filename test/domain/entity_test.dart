@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wrkateedge/domain/entities/entities.dart';
+import 'package:wrkateedge/domain/serializer/serializer.dart';
 
 void main() {
   group('Domain Entity:', () {
@@ -8,9 +9,16 @@ void main() {
       expect(sut, isA<CardEntity>());
     });
 
+    test('Should automatically add identity information.', () {
+      final sut = CardEntity.fake();
+      expect(sut.uuid.value.isSome(), isTrue);
+      expect(sut.createdOn.value.isSome(), isTrue);
+      expect(sut.updatedOn.value.isSome(), isTrue);
+      expect(sut.revision.value.isSome(), isTrue);
+    });
+
     test('Should not have any empty fields.', () {
       final sut = CardEntity.fake();
-
       expect(sut.label.value.isSome(), isTrue);
       expect(sut.description.value.isSome(), isTrue);
       expect(sut.isDefault.value.isSome(), isTrue);
@@ -19,6 +27,16 @@ void main() {
       expect(sut.valueRange.max.value.isSome(), isTrue);
     });
 
-    test('Should Serialised to int8.', () {});
+    test('Should Serialize to Map<String, Object>.', () {
+      final result = serializers.serialize(CardEntity.fake());
+      expect(result, isA<Map<String, Object>>());
+    });
+
+    test('Should Deserialize from Map<String, Object>.', () {
+      final sut = CardEntity.fake();
+      final serialized = serializers.serialize(sut);
+      final result = serializers.deserialize(serialized);
+      expect(result, sut);
+    });
   });
 }
