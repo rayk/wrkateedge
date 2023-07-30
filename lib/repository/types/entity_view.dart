@@ -7,6 +7,10 @@ part of 'types.dart';
 /// Consumers of the repository would create implementations of this interface
 /// the are created based on Domain Entity.
 abstract class EntityView {
-  /// Returns a map of the entity's values.
-  Map<String, dynamic> toMap();
+  /// Returns the unique identifier of the domain entity which was the source
+  /// of this views values.
+  String get ref;
+
+  /// The revision number of the domain entity that this view is based on.
+  int get revision;
 }
