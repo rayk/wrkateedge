@@ -1,6 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:uuid/uuid.dart';
 import 'package:wrkateedge/domain/group/group.dart';
 
@@ -23,6 +24,6 @@ mixin DomainEntity<T> {
   Revision get revision;
 
   /// Returns the all the value groups contained in this entity.
-  BuiltList<ValueObject<dynamic>> get constituents =>
-      BuiltList<ValueObject<dynamic>>([]);
+  IList<ValueObject<dynamic>> get constituents =>
+      IList<ValueObject<dynamic>>(const []);
 }

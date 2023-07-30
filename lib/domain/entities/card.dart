@@ -34,12 +34,10 @@ abstract class CardEntity
   CardEntity._();
 
   @override
-  BuiltList<ValueObject<dynamic>> get constituents =>
-      BuiltList<ValueObject<dynamic>>([
+  IList<ValueObject<dynamic>> get constituents => IList<ValueObject<dynamic>>([
         label,
         description,
         isDefault,
         weight,
-        valueRange,
       ]);
 }
