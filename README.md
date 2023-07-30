@@ -1,7 +1,7 @@
 
 <div style='vertical-align:middle; display:inline;'>
+<img style='float:left; margin:16px' src="https://github.com/rayk/wrkateedge/blob/master/doc/atedgeicon.png" width="100px">
 <h2>WrkAteEdge Reference Implementation</h2>
-  <img style='float:left; margin:16px' src="https://github.com/rayk/wrkateedge/blob/master/doc/atedgeicon.png" width="100px">
 </div>
 An implementation of a simple working-at-the-edge architecture is intended as a reference for a broader implementation. As
 a reference implementation, this project/repository does include 'extra file', which are not expected to be found in 
@@ -11,7 +11,7 @@ development workflow and environment.
 As security and integration with external providers is beyond the scope of this reference, the included env files can be
 considered free of sensitive information. 
 
-## Rational
+## Rationale
 
 We invested work into this reference implementation, to flesh out optimal solutions of the various challenged of
 implementing a multi-platform offline client, that does a large amount of data processing on different client devices
@@ -32,17 +32,18 @@ _The essence of this reference implementation_
 _Those things/challenges that we have explicit excluded from this reference implementation for the sake of brevity_
 
 - Beyond data bind to the GUI Widget and dependency management, issues of animations and other UI/UX are non-goals.  
-- Persistence and serialisation optimisation are non-goals.
+- Persistence and serialization optimization are non-goals.
 
 ### Assumptions
-_Those things/challenges which we have assumed generally accepted solutions shall deliver._
+_Those things/challenges which we have assumed a generally accepted solutions shall deliver, hence is not included in
+this reference implementation._
 
 - Mono-repo for all code. ~ [Melos](https://melos.invertase.dev/)
 - All libraries declared in the pubspec.yaml are the minimum required to deliver the reference implementation.
 - Environment config secrets are handled via a service like Doppler or similar, pushed into variables at build time.
 - IDE environment is IntelliJ.
 - Gui Localization is handled in the standard flutter way ~ [il18](https://docs.flutter.dev/accessibility-and-localization/internationalization)
-- Data Mo
+- Data Model will be handled using DDD Principles.
 
 ## Documentation
 
