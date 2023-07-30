@@ -23,6 +23,20 @@ class CardRepository extends Equatable {
     throw UnimplementedError();
   }
 
+  /// Return all the domain card entities wrapped in [EntityView].
+  /// which match the values in [request].
+  Task<IList<EntityView>> getCard(RepoRequest request) {
+    throw UnimplementedError();
+  }
+
+  Task<IList<EntityView>> putCard(RepoRequest request) {
+    throw UnimplementedError();
+  }
+
+  Task<IList<EntityView>> deleteCard(RepoRequest request) {
+    throw UnimplementedError();
+  }
+
   @override
   List<Object?> get props => [_dataStore];
 }
