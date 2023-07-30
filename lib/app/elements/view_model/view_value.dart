@@ -23,7 +23,11 @@ class CurrencyValue<double> implements ViewValue<double> {
   @override
   final Option<String> tooltip;
 
-  CurrencyValue(this.value, this.label, this.tooltip);
+  CurrencyValue(
+    this.value,
+    this.label,
+    this.tooltip,
+  );
 }
 
 /// A date value for rendering.
@@ -37,5 +41,9 @@ class DateValue<DateTime> implements ViewValue<DateTime> {
   @override
   final Option<String> tooltip;
 
-  DateValue(this.value, this.label, this.tooltip);
+  DateValue(
+    this.value,
+    this.label,
+    this.tooltip,
+  );
 }

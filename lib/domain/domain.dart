@@ -5,4 +5,5 @@ library domain;
 
 export 'entities/entities.dart';
 export 'group/group.dart';
+export 'serializer/serializer.dart';
 export 'values/values.dart';
