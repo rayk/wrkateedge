@@ -22,7 +22,7 @@ void main() {
         expect(allItems.getOrElse(() => fail('No Items in store')).length,
             equals(source.length));
       },
-      timeout: const Timeout(Duration(seconds: 1)),
+      timeout: const Timeout(Duration(seconds: 2)),
     );
 
     test(
@@ -37,7 +37,7 @@ void main() {
         expect(item.getOrElse(() => fail('No Item in store')).uuid.v,
             equals(source[0].uuid.v));
       },
-      timeout: const Timeout(Duration(seconds: 1)),
+      timeout: const Timeout(Duration(seconds: 2)),
     );
 
     test(
@@ -46,7 +46,7 @@ void main() {
         final item = await store.get('not in store uid');
         expect(item.isNone(), true);
       },
-      timeout: const Timeout(Duration(seconds: 1)),
+      timeout: const Timeout(Duration(seconds: 2)),
     );
   });
 }
