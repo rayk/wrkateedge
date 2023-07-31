@@ -1,19 +1,22 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:wrkateedge/app/features/cards/state/view_model/card_entity_view.dart';
-import 'package:wrkateedge/domain/entities/entities.dart';
 import 'package:wrkateedge/repository/card_repository/card_repository.dart';
 import 'package:wrkateedge/repository/repository.dart';
 import 'package:wrkateedge/store/store.dart';
 
+Function throwMissingKeyField = () => throw ArgumentError('');
+
 void main() {
   group('CardRepository:', () {
     late CardRepository repo;
+    const fakeCardCount = 50;
 
     setUp(() async {
       repo = CardRepository(
         FakeDataStore(
-          List.generate(50, (index) => CardEntity.fake()),
+          List.generate(fakeCardCount, (index) => CardEntity.fake()),
         ),
       );
     });
@@ -24,13 +27,26 @@ void main() {
       expect(repo, isA<CardRepository>());
     });
 
-    test('Should return a list of cards.', () async {
+    test('Should return a list of all the cards in the repo.', () async {
       final RepoRequest request = (
         params: {},
-        extractor: Reader<CardEntity, CardEntityView>((entity) {
-          return CardEntityView();
-        }),
+        extractor: Reader<CardEntity, CardEntityView>(
+          (entity) => CardEntityView(
+            ref: entity.uuid.value.getOrElse(throwMissingKeyField()),
+            revision: entity.revision.value.getOrElse(throwMissingKeyField()),
+            values: IList(),
+          ),
+        )
       );
+
+      repo.getAllCards(request).run().then((values) {
+        expect(values.length, fakeCardCount);
+        expect(
+            values.every(
+              (entity) => entity.ref.isNotEmpty && entity.revision > 0,
+            ),
+            isTrue);
+      });
     });
   });
 }

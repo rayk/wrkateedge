@@ -2,9 +2,11 @@ import 'package:equatable/equatable.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:wrkateedge/repository/repository.dart';
+import 'package:wrkateedge/repository/types/types.dart';
 
 import '../../store/store.dart';
+
+export 'package:wrkateedge/domain/entities/entities.dart' show CardEntity;
 
 part 'card_repository.g.dart';
 
@@ -19,9 +21,15 @@ class CardRepository extends Equatable {
   const CardRepository(this._dataStore);
 
   /// Returns a [Task] that returns a [List] of [EntityView].
-  Task<IList<EntityView>> getAllCards(RepoRequest request) {
-    throw UnimplementedError();
-  }
+  Task<IList<EntityView>> getAllCards(RepoRequest request) =>
+      _dataStore.getAll().map(
+            (result) => result.match(
+              () => IList<EntityView>(),
+              (entities) => IList(
+                entities.map((e) => request.extractor.run(e)),
+              ),
+            ),
+          );
 
   /// Return all the domain card entities wrapped in [EntityView].
   /// which match the values in [request].
@@ -38,5 +46,5 @@ class CardRepository extends Equatable {
   }
 
   @override
-  List<Object?> get props => [_dataStore];
+  List<Object?> get props => throw UnimplementedError();
 }

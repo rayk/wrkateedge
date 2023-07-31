@@ -1,0 +1,7 @@
+{
+    "@@locale": "en",
+    "labelPlaceholder": "Label Placeholder",
+    "@labelPlaceholder": {
+        "description": "A place holder for label where a label does not exist."
+    }
+}

@@ -52,10 +52,12 @@ class FakeDataStore {
       );
 
   /// Returns a list of all entitles in the this store.
-  Future<Option<List<DomainEntity>>> getAll() async => Future.delayed(
-        randomDelay(),
-        () => some(_entities.toList()),
-      );
+  Task<Option<List<DomainEntity>>> getAll() {
+    return Task(() => Future.delayed(
+          randomDelay(),
+          () => some(_entities.toList()),
+        ));
+  }
 
   /// Returns a unit if the entity was added.
   Future<Option<Unit>> put(DomainEntity entity) async => Future.delayed(
