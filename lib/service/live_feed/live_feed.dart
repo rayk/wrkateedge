@@ -10,6 +10,15 @@ class LiveFeedService implements WorkerService {
     await Future.delayed(const Duration(seconds: 1));
   }
 
+  Stream<double> pulse() async* {
+    var n = 0;
+    while (true) {
+      yield n.toDouble();
+      n += 1;
+      await Future.delayed(const Duration(milliseconds: 100));
+    }
+  }
+
   static const getFeed = 1;
 
   @override

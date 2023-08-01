@@ -3,6 +3,7 @@
 <img style='float:left; margin:16px' src="https://github.com/rayk/wrkateedge/blob/master/doc/atedgeicon.png" width="100px">
 <h2>WrkAteEdge Reference Implementation</h2>
 </div>
+
 An implementation of a simple working-at-the-edge architecture is intended as a reference for a broader implementation. As
 a reference implementation, this project/repository does include 'extra file', which are not expected to be found in 
 a production implementation. For example, IDE and environment files are included to demonstrate changes to the
