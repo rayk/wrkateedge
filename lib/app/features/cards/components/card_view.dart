@@ -19,27 +19,63 @@ class CardView extends ConsumerWidget {
     return Card(
         margin: const EdgeInsets.all(8.0),
         key: Key(card.ref),
-        child: ListTile(
-            leading: ToggleSwitch(
-              value: card.isDefault,
-              onChanged: (value) => ref
-                  .read(cardNotifierProvider.notifier)
-                  .toggleDefaultFlag(card),
+        child: SizedBox(
+          height: 275,
+          child: ListTile(
+            isThreeLine: true,
+            leading: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Spacer(),
+                ToggleSwitch(
+                  value: card.isActive,
+                  onChanged: (_) => ref
+                      .read(cardNotifierProvider.notifier)
+                      .toggleActiveFlag(card),
+                ),
+              ],
             ),
             title: Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
+              padding: const EdgeInsets.only(bottom: 8.0, top: 16),
               child: TextLineSingle(value: card.label),
             ),
-            subtitle: TextLineMultiple(value: card.description),
-            trailing: const Row(
-              mainAxisSize: MainAxisSize.min,
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  width: 100,
-                  child: Text('Chart 1'),
+                Padding(
+                  padding: const EdgeInsets.only(top: 16, bottom: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ColoredBox(
+                        color: Colors.yellowAccent.shade100,
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                        ),
+                      ),
+                      ColoredBox(
+                        color: Colors.greenAccent.shade100,
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                        ),
+                      ),
+                      ColoredBox(
+                        color: Colors.blueAccent.shade100,
+                        child: SizedBox(
+                          height: 100,
+                          width: 100,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(width: 100, height: 100, child: Text('Chart Two'))
+                TextLineMultiple(value: card.description),
               ],
-            )));
+            ),
+          ),
+        ));
   }
 }

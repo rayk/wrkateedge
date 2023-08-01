@@ -110,7 +110,7 @@ class CardEntitySelectProvider extends AutoDisposeProvider<CardEntityView> {
   }
 }
 
-String _$cardNotifierHash() => r'0ddcd91c285fba5fdf4de0a8fdf261f02aafb1b5';
+String _$cardNotifierHash() => r'3226588114a9e4837e0b71d68004f5a047c1d5f1';
 
 /// See also [CardNotifier].
 @ProviderFor(CardNotifier)

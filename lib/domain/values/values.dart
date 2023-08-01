@@ -6,6 +6,7 @@ import 'package:fpdart/fpdart.dart';
 part 'description.dart';
 part 'elapsed_time.dart';
 part 'end_int_value.dart';
+part 'is_active_flag.dart';
 part 'is_default_flag.dart';
 part 'label.dart';
 part 'on_created.dart';

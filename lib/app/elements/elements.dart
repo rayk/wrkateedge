@@ -2,3 +2,5 @@
 library elements;
 
 export 'view_values/view_values.dart';
+
+enum OpState { disabled, ready, working }

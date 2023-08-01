@@ -41,9 +41,9 @@ class CardRepository extends Equatable {
 
   Task<CardEntityView> patchCard(RepoRequest request) {
     final payload = request.params[#payload] as CardEntity;
-    return _dataStore
-        .put(payload)
-        .flatMap((a) => request.extractor.run(payload));
+    return _dataStore.put(payload).map((a) => a.match(
+        () => throw StateError('Put into store failed'),
+        (t) => request.extractor.run(payload)));
   }
 
   Task<IList<EntityView>> putCard(RepoRequest request) {

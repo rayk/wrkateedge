@@ -1,8 +1,8 @@
 part of 'value_widgets.dart';
 
-class ToggleSwitch extends StatelessWidget {
+class ToggleSwitch extends HookConsumerWidget {
   final ViewValue<bool> value;
-  final void Function(bool) onChanged;
+  final Function(WidgetRef) onChanged;
 
   const ToggleSwitch({
     Key? key,
@@ -11,13 +11,12 @@ class ToggleSwitch extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return value.value.match(
-      () => const SizedBox.shrink(),
-      (t) => Switch(
+  Widget build(
+    BuildContext context,
+    WidgetRef ref,
+  ) {
+    return Switch(
         value: value.value.getOrElse(() => false),
-        onChanged: onChanged,
-      ),
-    );
+        onChanged: (_) => onChanged(ref));
   }
 }

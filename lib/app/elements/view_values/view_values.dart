@@ -7,6 +7,7 @@ import 'package:fpdart/fpdart.dart';
 import '../../../domain/values/values.dart';
 import '../../../repository/localizations/l10n.dart';
 
+part 'active_flag_value.dart';
 part 'date_value.dart';
 part 'default_flag_value.dart';
 part 'defaults_by_extension.dart';

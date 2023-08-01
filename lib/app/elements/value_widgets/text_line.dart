@@ -16,7 +16,7 @@ class TextLineSingle extends StatelessWidget {
               children: [
                 Text(
                   t,
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: Theme.of(context).textTheme.bodyLarge,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   semanticsLabel: value.semantic.toString(),

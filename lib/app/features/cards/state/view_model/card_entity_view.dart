@@ -1,3 +1,7 @@
+import 'dart:async';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wrkateedge/app/features/cards/state/notifier.dart';
 import 'package:wrkateedge/domain/domain.dart';
 import 'package:wrkateedge/repository/localizations/l10n.dart';
 import 'package:wrkateedge/repository/repository.dart';
@@ -41,8 +45,31 @@ class CardEntityView implements EntityView {
       tooltip: (ctx) => AppString.of(ctx).placeholderForTooltip,
       source: _sourceEntity.isDefault);
 
-  CardEntity toggle() {
-    final updated = isDefault.toggle();
-    return _sourceEntity.rebuild((b) => b..isDefault.replace(updated.value));
+  ActiveFlagValue get isActive => ActiveFlagValue(
+      semantic: ValueSemantic.onOffSwitch,
+      label: (ctx) => AppString.of(ctx).placeholderForLabel,
+      tooltip: (ctx) => AppString.of(ctx).placeholderForTooltip,
+      source: _sourceEntity.isActive);
+
+  CardEntity flipDefault() {
+    final updated = _sourceEntity.isDefault.toggle();
+    return _sourceEntity.rebuild((b) => b..isDefault = updated.toBuilder());
+  }
+
+  CardEntity flipActive() {
+    final updated = _sourceEntity.isActive.toggle();
+    return _sourceEntity.rebuild((b) => b..isActive = updated.toBuilder());
+  }
+
+  /// Returns a OpState whilst attempting to toggle the default flag.
+  Future<OpState> toggle(WidgetRef ref) {
+    final cmp = Completer<OpState>();
+
+    ref
+        .watch(cardNotifierProvider.notifier)
+        .toggleDefaultFlag(this)
+        .then((value) => cmp.complete(OpState.ready));
+
+    return cmp.future;
   }
 }

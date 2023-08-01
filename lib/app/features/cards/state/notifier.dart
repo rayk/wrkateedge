@@ -15,6 +15,11 @@ part 'view_model/card_state.dart';
 class CardNotifier extends _$CardNotifier with UiLoggy {
   late CardRepository _cardRepo;
 
+  Future<IList<CardEntityView>> _fetchCards() async {
+    return await _cardRepo.getAllCards<CardEntityView>(
+        (extractor: cardEntityViewExtractor, params: {})).run();
+  }
+
   @override
   Future<CardState> build() async {
     _cardRepo = ref.watch<CardRepository>(cardRepositoryProvider);
@@ -33,19 +38,46 @@ class CardNotifier extends _$CardNotifier with UiLoggy {
   Future<Unit> toggleDefaultFlag(CardEntityView card) async {
     loggy.debug('toggleDefaultFlag: ${card.ref}');
 
+    final Task<CardEntityView> task = _cardRepo.patchCard(
+      (
+        params: {
+          #ref: card.ref,
+          #payload: card.flipDefault(),
+        },
+        extractor: cardEntityViewExtractor
+      ),
+    );
+
     state = await AsyncValue.guard(() async {
-      return _cardRepo
-          .patchCard((
-            params: {
-              #ref: ref,
-              #payload: card.toggle(),
-            },
-            extractor: cardEntityViewExtractor,
-          ))
-          .map((a) => state.requireValue.cardViews
-              .replaceAllWhere((element) => element.ref == a.ref, a))
-          .run()
-          .then((value) => state.requireValue.copyWith(cardViews: value));
+      final card = await task.run();
+      return state.requireValue.copyWith(
+          cardViews: state.requireValue.cardViews
+              .map((e) => e.ref == card.ref ? card : e)
+              .toIList());
+    });
+
+    return unit;
+  }
+
+  Future<Unit> toggleActiveFlag(CardEntityView card) async {
+    loggy.debug('toggleActiveFlag: ${card.ref}');
+
+    final Task<CardEntityView> task = _cardRepo.patchCard(
+      (
+        params: {
+          #ref: card.ref,
+          #payload: card.flipActive(),
+        },
+        extractor: cardEntityViewExtractor
+      ),
+    );
+
+    state = await AsyncValue.guard(() async {
+      final card = await task.run();
+      return state.requireValue.copyWith(
+          cardViews: state.requireValue.cardViews
+              .map((e) => e.ref == card.ref ? card : e)
+              .toIList());
     });
 
     return unit;
@@ -54,7 +86,7 @@ class CardNotifier extends _$CardNotifier with UiLoggy {
 
 @riverpod
 CardEntityView cardEntitySelect(CardEntitySelectRef ref, String uuid) =>
-    ref.watch(
+    ref.watch<CardEntityView>(
       cardNotifierProvider.select((state) => state.requireValue.cardViews
           .firstWhere((element) => element.ref == uuid)),
     );

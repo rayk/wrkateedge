@@ -18,6 +18,7 @@ abstract class CardEntity
     ..label = Label.fake().toBuilder()
     ..description = Description.fake().toBuilder()
     ..isDefault = IsDefaultFlag.fake().toBuilder()
+    ..isActive = IsActiveFlag.fake().toBuilder()
     ..weight = Weight.fake().toBuilder()
     ..valueRange = IntRange.fake().toBuilder());
 
@@ -31,6 +32,8 @@ abstract class CardEntity
 
   IntRange get valueRange;
 
+  IsActiveFlag get isActive;
+
   CardEntity._();
 
   @override
@@ -38,6 +41,7 @@ abstract class CardEntity
         label,
         description,
         isDefault,
+        isActive,
         weight,
       ]);
 }
