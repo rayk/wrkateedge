@@ -17,10 +17,15 @@ void main() {
     test(
       'Should return option of all the items in the store.',
       () async {
-        final allItems = await store.getAll();
-        expect(allItems.isSome(), true);
-        expect(allItems.getOrElse(() => fail('No Items in store')).length,
-            equals(source.length));
+        await store
+            .getAll()
+            .map(
+              (result) => result.match(
+                () => fail('No Items in store'),
+                (items) => expect(items.length, equals(source.length)),
+              ),
+            )
+            .run();
       },
       timeout: const Timeout(Duration(seconds: 2)),
     );

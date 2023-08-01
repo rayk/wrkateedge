@@ -36,6 +36,14 @@ class ConcreteEntityView implements EntityView {
   Map<String, dynamic> toMap() {
     throw UnimplementedError();
   }
+
+  @override
+  // TODO: implement ref
+  String get ref => throw UnimplementedError();
+
+  @override
+  // TODO: implement revision
+  int get revision => throw UnimplementedError();
 }
 
 main() {
