@@ -6,7 +6,7 @@ part of 'notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$cardEntitySelectHash() => r'4c6f9c274d1ca9f9e1f236273c085bf39eda64c0';
+String _$cardEntitySelectHash() => r'610a72bbc35ead90b912c9955f5e5ec586ae0217';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -110,7 +110,7 @@ class CardEntitySelectProvider extends AutoDisposeProvider<CardEntityView> {
   }
 }
 
-String _$cardNotifierHash() => r'3226588114a9e4837e0b71d68004f5a047c1d5f1';
+String _$cardNotifierHash() => r'ae18a2f1c5817c10e050f07ea817167e7df2484e';
 
 /// See also [CardNotifier].
 @ProviderFor(CardNotifier)
