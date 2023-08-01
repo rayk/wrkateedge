@@ -18,6 +18,8 @@ abstract class IsDefaultFlag extends Object
   factory IsDefaultFlag.fake() =>
       IsDefaultFlag((b) => b..v = _isDefaultFlagFaker());
 
+  toggle() => rebuild((b) => b..v = value.fold(() => null, (a) => !a));
+
   IsDefaultFlag._();
 }
 

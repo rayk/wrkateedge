@@ -1,7 +1,18 @@
 {
     "@@locale": "en",
-    "labelPlaceholder": "Label Placeholder",
+
+    "placeholderGenericString": "Generic String Placeholder, as one not defined in ARB file!",
+    "@placeholderGenericString": {
+        "description": "The most Generic String Placeholder, used when a text label, tooltip, etc. is not defined in the ARB file."
+    },
+
+    "placeholderForLabel": "Label Placeholder",
     "@labelPlaceholder": {
         "description": "A place holder for label where a label does not exist."
+    },
+
+    "placeholderForTooltip": "Tooltip Placeholder",
+    "@tooltipPlaceholder": {
+        "description": "A place holder for tooltip where a tooltip does not exist."
     }
 }

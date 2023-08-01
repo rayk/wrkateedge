@@ -1,4 +1,3 @@
-import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:wrkateedge/app/features/cards/state/view_model/card_entity_view.dart';
@@ -32,10 +31,9 @@ void main() {
         params: {},
         extractor: Reader<CardEntity, CardEntityView>(
           (entity) => CardEntityView(
-            ref: entity.uuid.value.getOrElse(throwMissingKeyField()),
-            revision: entity.revision.value.getOrElse(throwMissingKeyField()),
-            values: IList(),
-          ),
+              ref: entity.uuid.value.getOrElse(throwMissingKeyField()),
+              revision: entity.revision.value.getOrElse(throwMissingKeyField()),
+              entity: entity),
         )
       );
 

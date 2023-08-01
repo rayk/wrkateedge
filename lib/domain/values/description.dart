@@ -21,7 +21,5 @@ abstract class Description extends Object
 }
 
 String _descriptionFaker() => _faker.randomGenerator.element<String>([
-      _faker.conference.name(),
-      _faker.lorem.word(),
-      _faker.food.dish(),
+      _faker.lorem.sentence(),
     ]);

@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CardState {
   String get uid => throw _privateConstructorUsedError;
+  DateTime get updatedOn => throw _privateConstructorUsedError;
+  IList<CardEntityView> get cardViews => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CardStateCopyWith<CardState> get copyWith =>
@@ -28,7 +30,7 @@ abstract class $CardStateCopyWith<$Res> {
   factory $CardStateCopyWith(CardState value, $Res Function(CardState) then) =
       _$CardStateCopyWithImpl<$Res, CardState>;
   @useResult
-  $Res call({String uid});
+  $Res call({String uid, DateTime updatedOn, IList<CardEntityView> cardViews});
 }
 
 /// @nodoc
@@ -45,12 +47,22 @@ class _$CardStateCopyWithImpl<$Res, $Val extends CardState>
   @override
   $Res call({
     Object? uid = null,
+    Object? updatedOn = null,
+    Object? cardViews = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      updatedOn: null == updatedOn
+          ? _value.updatedOn
+          : updatedOn // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      cardViews: null == cardViews
+          ? _value.cardViews
+          : cardViews // ignore: cast_nullable_to_non_nullable
+              as IList<CardEntityView>,
     ) as $Val);
   }
 }
@@ -62,7 +74,7 @@ abstract class _$$_CardStateCopyWith<$Res> implements $CardStateCopyWith<$Res> {
       __$$_CardStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String uid});
+  $Res call({String uid, DateTime updatedOn, IList<CardEntityView> cardViews});
 }
 
 /// @nodoc
@@ -77,12 +89,22 @@ class __$$_CardStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? uid = null,
+    Object? updatedOn = null,
+    Object? cardViews = null,
   }) {
     return _then(_$_CardState(
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      updatedOn: null == updatedOn
+          ? _value.updatedOn
+          : updatedOn // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      cardViews: null == cardViews
+          ? _value.cardViews
+          : cardViews // ignore: cast_nullable_to_non_nullable
+              as IList<CardEntityView>,
     ));
   }
 }
@@ -90,14 +112,20 @@ class __$$_CardStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CardState extends _CardState {
-  const _$_CardState({required this.uid}) : super._();
+  const _$_CardState(
+      {required this.uid, required this.updatedOn, required this.cardViews})
+      : super._();
 
   @override
   final String uid;
+  @override
+  final DateTime updatedOn;
+  @override
+  final IList<CardEntityView> cardViews;
 
   @override
   String toString() {
-    return 'CardState(uid: $uid)';
+    return 'CardState(uid: $uid, updatedOn: $updatedOn, cardViews: $cardViews)';
   }
 
   @override
@@ -105,11 +133,15 @@ class _$_CardState extends _CardState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CardState &&
-            (identical(other.uid, uid) || other.uid == uid));
+            (identical(other.uid, uid) || other.uid == uid) &&
+            (identical(other.updatedOn, updatedOn) ||
+                other.updatedOn == updatedOn) &&
+            const DeepCollectionEquality().equals(other.cardViews, cardViews));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, uid);
+  int get hashCode => Object.hash(runtimeType, uid, updatedOn,
+      const DeepCollectionEquality().hash(cardViews));
 
   @JsonKey(ignore: true)
   @override
@@ -119,11 +151,18 @@ class _$_CardState extends _CardState {
 }
 
 abstract class _CardState extends CardState {
-  const factory _CardState({required final String uid}) = _$_CardState;
+  const factory _CardState(
+      {required final String uid,
+      required final DateTime updatedOn,
+      required final IList<CardEntityView> cardViews}) = _$_CardState;
   const _CardState._() : super._();
 
   @override
   String get uid;
+  @override
+  DateTime get updatedOn;
+  @override
+  IList<CardEntityView> get cardViews;
   @override
   @JsonKey(ignore: true)
   _$$_CardStateCopyWith<_$_CardState> get copyWith =>

@@ -1,8 +1,7 @@
 part of 'view_values.dart';
 
-/// Wrapper for a data value.
 @immutable
-class DateValue extends ViewValue<DateTime> {
+class DefaultFlagValue implements ViewValue<bool> {
   @override
   final ValueSemantic semantic;
 
@@ -12,9 +11,11 @@ class DateValue extends ViewValue<DateTime> {
   @override
   final StringSelector tooltip;
 
-  final ValueObject<DateTime> source;
+  final ValueObject<bool> source;
 
-  DateValue({
+  toggle() => source.rebuild((b) => b..v = value.fold(() => null, (a) => !a));
+
+  const DefaultFlagValue({
     required this.semantic,
     required this.label,
     required this.tooltip,
@@ -22,5 +23,5 @@ class DateValue extends ViewValue<DateTime> {
   });
 
   @override
-  Option<DateTime> get value => source.value.map((t) => t.toLocal());
+  Option<bool> get value => source.value;
 }

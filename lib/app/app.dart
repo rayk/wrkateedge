@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wrkateedge/app/theme/theme.dart';
 
+import '../repository/localizations/l10n.dart';
 import 'features/cards/cards.dart';
 
 /// The top level widget that contains the application and has the primary
@@ -33,12 +34,10 @@ class WrkAteEdgeApp extends StatelessWidget {
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate
+          GlobalCupertinoLocalizations.delegate,
+          AppString.delegate,
         ],
-        supportedLocales: const [
-          Locale('en', 'US'),
-          Locale('es', 'ES'),
-        ],
+        supportedLocales: AppString.delegate.supportedLocales,
         debugShowCheckedModeBanner: showDebugBanner,
         home: const Shell(),
       );

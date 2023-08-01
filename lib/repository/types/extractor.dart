@@ -5,4 +5,4 @@ part of 'types.dart';
 ///
 /// The intent behind this type is to allow the consumer the flexible to define
 /// which values from a [DomainEntity] should be rendered.
-typedef ValueExtractor = Reader<DomainEntity, EntityView>;
+typedef ValueExtractor<T> = Reader<DomainEntity, T>;

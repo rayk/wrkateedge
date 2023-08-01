@@ -9,10 +9,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loggy/loggy.dart';
 import 'package:wrkateedge/config/config.dart';
 import 'package:wrkateedge/startup/startup.dart';
-import 'package:wrkateedge/store/store.dart';
 
 import 'app/app.dart';
-import 'domain/entities/entities.dart';
 
 /// Main Application entry point from which the application is executed from.
 ///
@@ -35,9 +33,7 @@ void main() {
 
   runApp(
     ProviderScope(
-      overrides: [
-        dataStoreProvider.call(List.generate(50, (i) => CardEntity.fake()))
-      ],
+      overrides: [],
       observers: [if (ConfigValues.observeProviders) ProviderDebugObserver()],
       child: const WrkAteEdgeApp(
         appVersion: ConfigValues.appVersion,

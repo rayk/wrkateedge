@@ -6,20 +6,21 @@ class TextValue implements ViewValue<String> {
   @override
   final ValueSemantic semantic;
 
+  @override
+  final StringSelector label;
+
+  @override
+  final StringSelector tooltip;
+
+  final ValueObject<String> source;
+
   const TextValue({
     required this.semantic,
+    required this.label,
+    required this.tooltip,
+    required this.source,
   });
 
   @override
-  StringSelector label(BuildContext context) {
-    throw UnimplementedError();
-  }
-
-  @override
-  StringSelector tooltip(BuildContext context) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Option<String> get value => throw UnimplementedError();
+  Option<String> get value => source.value;
 }
