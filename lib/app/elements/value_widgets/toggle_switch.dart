@@ -15,8 +15,11 @@ class ToggleSwitch extends HookConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    return Switch(
-        value: value.value.getOrElse(() => false),
-        onChanged: (_) => onChanged(ref));
+    return Tooltip(
+      message: value.tooltip(context),
+      child: Switch(
+          value: value.value.getOrElse(() => false),
+          onChanged: (_) => onChanged(ref)),
+    );
   }
 }

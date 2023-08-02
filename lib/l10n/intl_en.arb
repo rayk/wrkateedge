@@ -14,5 +14,50 @@
     "placeholderForTooltip": "Tooltip Placeholder",
     "@tooltipPlaceholder": {
         "description": "A place holder for tooltip where a tooltip does not exist."
+    },
+
+    "empty_label": "",
+    "@empty_label": {
+        "description": "A empty label."
+    },
+
+    "empty_tooltip": "",
+    "@empty_tooltip": {
+        "description": "An empty tooltip."
+    },
+
+    "empty_description": "",
+    "@empty_description": {
+        "description": "An empty description."
+    },
+
+    "card_label": "Card Label",
+    "@card_label": {
+        "description": "A label for the card."
+    },
+
+    "card_label_tooltip": "Click to edit this card label",
+    "@card_label_tooltip": {
+        "description": "A tooltip for the card."
+    },
+
+    "card_description_label": "Description",
+    "@card_description_label": {
+        "description": "A label for the description."
+    },
+
+    "card_description_tooltip": "Click to edit this description",
+    "@description_tooltip": {
+        "description": "A tooltip for the description."
+    },
+
+    "card_active_switch_label": "",
+    "@card_active_switch_label": {
+        "description": "A label for the active switch."
+    },
+
+    "card_active_switch_tooltip": "Click to toggle this card's active state",
+    "@card_active_switch_tooltip": {
+        "description": "A tooltip for the active switch."
     }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:wrkateedge/app/elements/value_widgets/value_widgets.dart';
 import 'package:wrkateedge/app/features/cards/components/live_feed.dart';
 
@@ -18,13 +19,18 @@ class CardView extends ConsumerWidget {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         final card = ref.watch(cardEntitySelectProvider(subjectRef));
+        final maxWidth = constraints.maxWidth;
+        final graphWith = maxWidth * 0.61;
+
+        final isEnabled = card.isActive.value.getOrElse(() => false);
+
         return Card(
             margin: const EdgeInsets.all(8.0),
             key: Key(card.ref),
             child: SizedBox(
-              height: 275,
+              height: isEnabled ? 275 : 150,
               child: ListTile(
-                isThreeLine: true,
+                isThreeLine: isEnabled,
                 leading: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -40,7 +46,10 @@ class CardView extends ConsumerWidget {
                 ),
                 title: Padding(
                   padding: const EdgeInsets.only(bottom: 8.0, top: 16),
-                  child: TextLineSingle(value: card.label),
+                  child: TextLineSingle(
+                    value: card.label,
+                    isEnabled: isEnabled,
+                  ),
                 ),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,13 +59,46 @@ class CardView extends ConsumerWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          SizedBox(height: 100, width: 200, child: LiveFeed()),
-                          SizedBox(height: 100, width: 200, child: LiveFeed()),
-                          SizedBox(height: 100, width: 200, child: LiveFeed()),
+                          SizedBox(
+                              height: isEnabled ? 100 : 50,
+                              width: graphWith / 3,
+                              child: LiveFeed(
+                                isEnabled: isEnabled,
+                              )),
+                          SizedBox(
+                              height: isEnabled ? 100 : 50,
+                              width: graphWith / 3,
+                              child: LiveFeed(
+                                isEnabled: isEnabled,
+                              )),
+                          SizedBox(
+                              height: isEnabled ? 100 : 50,
+                              width: graphWith / 3,
+                              child: LiveFeed(
+                                isEnabled: isEnabled,
+                              )),
                         ],
                       ),
                     ),
-                    TextLineMultiple(value: card.description),
+                    TextLineMultiple(
+                        value: card.description, isEnabled: isEnabled),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8, bottom: 8),
+                          child: SubTextLine(
+                            rawValue: card.ref,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8, bottom: 8),
+                          child: SubTextLine(
+                            rawValue: card.revision.toString(),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
