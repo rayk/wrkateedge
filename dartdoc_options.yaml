@@ -14,6 +14,9 @@ dartdoc:
     "Startup":
       name: Startup
       markdown: doc/notes/startup.md
-    categoryOrder: ["Structure", "Config", "Startup", "GUI", "DataFlow"]
+    "Features":
+      name: Features
+      markdown: doc/notes/features.md
+    categoryOrder: ["Structure", "Config", "Startup", "GUI", "DataFlow", "Features"]
     showUndocumentedCategories: false
-    nodoc: ['lib/**/*.g.dart', 'lib/**/*.freeze.dart']
+    nodoc: ['lib/**/*.g.dart', 'lib/**/*.freeze.dart', 'lib/**/*.*.g.dart','lib/app/features/cards/components/**/*.dart']

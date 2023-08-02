@@ -1,4 +1,6 @@
 /// The card feature.
+///
+/// {@category Features}
 library cards;
 
 import 'package:flutter/material.dart';

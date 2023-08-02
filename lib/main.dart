@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loggy/loggy.dart';
 import 'package:wrkateedge/config/config.dart';
-import 'package:wrkateedge/service/live_feed/live_feed.dart';
 import 'package:wrkateedge/startup/startup.dart';
 
 import 'app/app.dart';
@@ -31,10 +30,6 @@ void main() async {
           .firstWhere((level) => level.priority == ConfigValues.logLevel),
     ),
   );
-
-  final worker = LiveFeedServiceWorker();
-
-  await worker.start();
 
   runApp(
     ProviderScope(
