@@ -15,11 +15,9 @@ class CardView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final card = ref.watch(cardEntitySelectProvider(subjectRef));
-
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
-        print(constraints.maxWidth);
+        final card = ref.watch(cardEntitySelectProvider(subjectRef));
         return Card(
             margin: const EdgeInsets.all(8.0),
             key: Key(card.ref),
