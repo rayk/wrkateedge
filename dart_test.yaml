@@ -1,0 +1,16 @@
+timeout: 30s
+
+tags:
+  unit: {
+    allow_test_randomization: true,
+  }
+
+  widget: {
+    timeout: 2x,
+    allow_test_randomization: true
+  }
+
+  integration: {
+    timeout: 3x,
+    allow_test_randomization: false
+  }

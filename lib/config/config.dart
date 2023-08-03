@@ -6,6 +6,9 @@ library config;
 /// Compile time static configuration values, that are set from the environment
 /// during build time.
 ///
+/// Its intended that valued from the environment are inserted via
+/// '--dart-define-from-file=*/*.env'
+///
 /// {@category Config}
 class ConfigValues {
   /// The name of the application.
@@ -14,8 +17,9 @@ class ConfigValues {
   /// The version number of this build of the application.
   static const String appVersion = String.fromEnvironment('APP_VERSION');
 
-  /// Defines the log level for the application.
-  static const int logLevel = int.fromEnvironment('LOG_LEVEL');
+  /// Defines the log level for the application, defaults to verbose (0) when
+  /// no config is provided.
+  static const int logLevel = int.fromEnvironment('LOG_LEVEL', defaultValue: 1);
 
   /// Should the debug banner be shown on the material app.
   static const bool showDebugBanner = bool.fromEnvironment('SHOW_DEBUG_BANNER');

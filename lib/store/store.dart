@@ -6,7 +6,9 @@ import 'dart:math';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:loggy/loggy.dart';
+import 'package:meta/meta.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:wrkateedge/config/config.dart';
 import 'package:wrkateedge/domain/domain.dart';
 
 part 'store.g.dart';
@@ -16,12 +18,17 @@ final _rnd = Random();
 /// Returns a random duration that represents the time associated with
 /// async store operations.
 Duration randomDelay() => Duration(
-      milliseconds: 300 + _rnd.nextInt(1000 - 300),
+      milliseconds: ConfigValues.fakeMinAsyncDelay +
+          _rnd.nextInt(
+            ConfigValues.fakeMaxAsyncDelay - ConfigValues.fakeMinAsyncDelay,
+          ),
     );
 
 @riverpod
 FakeDataStore dataStore(DataStoreRef ref, {List<CardEntity>? initialData}) =>
-    FakeDataStore(initialData ?? []);
+    FakeDataStore(
+      initialData ?? List.generate(50, (index) => CardEntity.fake()),
+    );
 
 /// Represents a data store which handled the durability operations of
 /// domain objects.
@@ -29,10 +36,16 @@ class FakeDataStore with UiLoggy {
   final ISet<DomainEntity> _entities;
 
   FakeDataStore(List<DomainEntity> payload)
-      : _entities = ISet<DomainEntity>(
-            List.generate(50, (index) => CardEntity.fake())) {
+      : _entities = ISet<DomainEntity>(payload) {
     loggy.debug('FakeDataStore: loaded with ${_entities.length} entities');
   }
+
+  @visibleForTesting
+  int get entityCount => _entities.length;
+
+  @visibleForTesting
+  DomainEntity getById(String uuid) =>
+      _entities.firstWhere((e) => e.uuid.v == uuid);
 
   /// Returns a Some if the entity was removed, else a none.
   Future<Option<Unit>> delete(String uuid) async => Future.delayed(
@@ -67,7 +80,7 @@ class FakeDataStore with UiLoggy {
 
   /// Loads the entities into the store.
   Future<Option<Unit>> load(List<DomainEntity> payload) async =>
-      Future.delayed(randomDelay(), () {
+      Future.delayed(const Duration(milliseconds: 1), () {
         _entities.addAll(payload);
         return some(unit);
       });

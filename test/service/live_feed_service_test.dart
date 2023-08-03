@@ -1,7 +1,13 @@
+@Tags(['unit'])
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loggy/loggy.dart';
+import 'package:wrkateedge/config/config.dart';
 import 'package:wrkateedge/service/live_feed/live_feed.dart';
 
 void main() async {
+  Loggy.initLoggy(
+    logOptions: const LogOptions(LogLevel('test', ConfigValues.logLevel)),
+  );
   final worker = LiveFeedServiceWorker();
 
   setUp(() async {

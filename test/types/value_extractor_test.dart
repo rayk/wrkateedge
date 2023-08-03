@@ -1,6 +1,9 @@
+@Tags(['unit'])
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:loggy/loggy.dart';
+import 'package:wrkateedge/config/config.dart';
 import 'package:wrkateedge/domain/entities/entities.dart';
 import 'package:wrkateedge/domain/values/values.dart';
 import 'package:wrkateedge/repository/types/types.dart';
@@ -47,6 +50,9 @@ class ConcreteEntityView implements EntityView {
 }
 
 main() {
+  Loggy.initLoggy(
+    logOptions: const LogOptions(LogLevel('test', ConfigValues.logLevel)),
+  );
   group('ValueSelector Type Verification:', () {
     test('Should identify a Reader as <ValueSelector>.', () {
       final sut = Reader<Duck, ConcreteEntityView>(

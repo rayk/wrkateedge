@@ -1,18 +1,24 @@
+@Tags(['unit'])
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:loggy/loggy.dart';
+import 'package:wrkateedge/config/config.dart';
 import 'package:wrkateedge/domain/entities/entities.dart';
 import 'package:wrkateedge/store/store.dart';
 
 void main() {
+  Loggy.initLoggy(
+    logOptions: const LogOptions(LogLevel('test', ConfigValues.logLevel)),
+  );
+  final source = List.generate(50, (index) => CardEntity.fake());
   group('Smoke Fake Store', () {
-    final source = List.generate(50, (index) => CardEntity.fake());
-    final FakeDataStore store = FakeDataStore([]);
+    late FakeDataStore store;
 
-    setUp(() async {
-      await store.load(source);
+    setUp(() {
+      store = FakeDataStore(source);
+      assert(store.entityCount == source.length,
+          'Store should have ${source.length} items in it.');
     });
-
-    tearDown(() => store.dispose());
 
     test(
       'Should return option of all the items in the store.',
@@ -33,12 +39,19 @@ void main() {
     test(
       'Should return option Some of the item in the store.',
       () async {
+        final String targetId =
+            source[0].uuid.value.getOrElse(() => fail('No uuid'));
+        assert(store.getById(targetId).uuid.v == targetId,
+            'Id: $targetId should be in store.');
+
         final item = await store.get(source[0]
             .uuid
             .value
             .getOrElse(() => fail('CardEntry has no uuid.')));
 
-        expect(item.isSome(), true);
+        expect(item.isSome(), true,
+            reason:
+                'Card Uuid: ${source[0].uuid.value.getOrElse(() => 'Does not have uuid')} not in store!');
         expect(item.getOrElse(() => fail('No Item in store')).uuid.v,
             equals(source[0].uuid.v));
       },

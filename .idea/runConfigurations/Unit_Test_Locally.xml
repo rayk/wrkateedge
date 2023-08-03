@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Unit Test Locally" type="FlutterTestConfigType" factoryName="Flutter Test">
+    <option name="testDir" value="$PROJECT_DIR$/test" />
+    <option name="useRegexp" value="false" />
+    <option name="additionalArgs" value="--dart-define-from-file=env/local_test.json --tags=unit" />
+    <method v="2" />
+  </configuration>
+</component>

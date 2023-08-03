@@ -1,8 +1,15 @@
+@Tags(['unit'])
 import 'package:flutter_test/flutter_test.dart';
+import 'package:loggy/loggy.dart';
+import 'package:wrkateedge/config/config.dart';
 import 'package:wrkateedge/domain/entities/entities.dart';
 import 'package:wrkateedge/domain/serializer/serializer.dart';
 
 void main() {
+  Loggy.initLoggy(
+    logOptions: const LogOptions(LogLevel('test', ConfigValues.logLevel)),
+  );
+
   group('Domain Entity:', () {
     test('Should return a fake Card Domain Entity.', () {
       final sut = CardEntity.fake();

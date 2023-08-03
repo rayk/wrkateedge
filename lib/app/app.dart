@@ -51,7 +51,9 @@ class Shell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('WrkAteEdge Implementation')),
-      body: const CardFeature(),
+      body: const CardFeature(
+        key: Key('cardFeature'),
+      ),
     );
   }
 }

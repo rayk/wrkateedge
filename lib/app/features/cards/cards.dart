@@ -9,6 +9,8 @@ import 'package:wrkateedge/app/features/cards/components/card_info_bar.dart';
 import 'package:wrkateedge/app/features/cards/components/card_view.dart';
 import 'package:wrkateedge/app/features/cards/state/notifier.dart';
 
+const appBarContainerKey = Key('appbarContainerKey');
+
 /// Card feature top level widget responsible for hookup and and lifecycle
 /// of the card feature.
 class CardFeature extends HookConsumerWidget {
@@ -21,6 +23,7 @@ class CardFeature extends HookConsumerWidget {
               shrinkWrap: true,
               slivers: [
                 SliverAppBar(
+                  key: appBarContainerKey,
                   title: CardInfoBar(state: state),
                 ),
                 SliverList(

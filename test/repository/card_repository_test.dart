@@ -1,6 +1,9 @@
+@Tags(['unit'])
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:loggy/loggy.dart';
 import 'package:wrkateedge/app/features/cards/state/view_model/card_entity_view.dart';
+import 'package:wrkateedge/config/config.dart';
 import 'package:wrkateedge/repository/card_repository/card_repository.dart';
 import 'package:wrkateedge/repository/repository.dart';
 import 'package:wrkateedge/store/store.dart';
@@ -8,6 +11,10 @@ import 'package:wrkateedge/store/store.dart';
 Function throwMissingKeyField = () => throw ArgumentError('');
 
 void main() {
+  Loggy.initLoggy(
+    logOptions: const LogOptions(LogLevel('test', ConfigValues.logLevel)),
+  );
+
   group('CardRepository:', () {
     late CardRepository repo;
     const fakeCardCount = 50;

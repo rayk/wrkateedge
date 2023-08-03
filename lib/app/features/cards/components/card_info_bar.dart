@@ -3,10 +3,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../state/notifier.dart';
 
+const cardInfoBarKey = Key('cardInfoBar');
+
 class CardInfoBar extends HookConsumerWidget {
   final CardState state;
 
-  const CardInfoBar({super.key, required this.state});
+  const CardInfoBar({super.key = cardInfoBarKey, required this.state});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Row(

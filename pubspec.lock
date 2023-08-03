@@ -338,10 +338,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_hooks
-      sha256: b10cab7e0e4dbb60ff5360a740def3919aecbc672240f742a7130a2874204229
+      sha256: "9eab8fd7aa752c3c1c0a364f9825851d410eb935243411682f4b1b0a4c569d71"
       url: "https://pub.dev"
     source: hosted
-    version: "0.19.0"
+    version: "0.20.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -372,10 +372,10 @@ packages:
     dependency: "direct main"
     description:
       name: fpdart
-      sha256: "4a0d047c3359a4bdd19e4941603bbe394bd133b3772a38049e17f9534d47106e"
+      sha256: b254aef83353a12e355df6f1231d9b646638bb9493b3f2a2c4800961f7e8bf0b
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.0"
+    version: "1.0.0"
   freezed:
     dependency: "direct main"
     description:
@@ -545,7 +545,7 @@ packages:
     source: hosted
     version: "0.2.0"
   meta:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: meta
       sha256: "3c74dbf8763d36539f114c799d8a2d87343b5067e9d796ca22b5eb8437090ee3"
@@ -620,10 +620,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_platform_interface
-      sha256: "57585299a729335f1298b43245842678cb9f43a6310351b18fb577d6e33165ec"
+      sha256: bced5679c7df11190e1ddc35f3222c858f328fff85c3942e46e7f5589bf9eb84
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.6"
+    version: "2.1.0"
   path_provider_windows:
     dependency: transitive
     description:
