@@ -13,4 +13,11 @@ abstract class EntityView {
 
   /// The revision number of the domain entity that this view is based on.
   int get revision;
+
+  /// Returns a list of all the [ViewValue] objects that are available for this
+  /// view entity. Used as to discover the properties in this view as well as
+  /// bases for equality checks.
+  IList<ViewValue> get values;
+
+  const EntityView();
 }

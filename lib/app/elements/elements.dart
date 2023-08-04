@@ -1,8 +1,7 @@
-/// Contains elements that are composed together in feature components.
+/// Contains generic and specific concrete elements that are composed together
+/// in feature components to delivery GUI Behaviours.
 ///
 /// {@category GUI}
 library elements;
 
-export 'view_values/view_values.dart';
-
-enum OpState { disabled, ready, working }
+export 'view_elements/value_elements.dart';

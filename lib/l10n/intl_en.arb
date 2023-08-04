@@ -59,5 +59,15 @@
     "card_active_switch_tooltip": "Click to toggle this card's active state",
     "@card_active_switch_tooltip": {
         "description": "A tooltip for the active switch."
+    },
+
+    "card_feature_last_updated_label": "Last Updated",
+    "@card_feature_last_updated_label": {
+        "description": "A label for the last updated."
+    },
+
+    "card_feature_card_count_label": "Total Cards",
+    "@card_feature_card_count_label": {
+        "description": "A label for the card count."
     }
 }

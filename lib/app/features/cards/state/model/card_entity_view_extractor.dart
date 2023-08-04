@@ -1,7 +1,4 @@
-import 'package:fpdart/fpdart.dart';
-
-import '../../../../../repository/card_repository/card_repository.dart';
-import 'card_entity_view.dart';
+part of 'card_feature_model.dart';
 
 /// Returns a value extractor that produces a [CardEntityView] for a given [CardEntity].
 ///
@@ -10,7 +7,7 @@ import 'card_entity_view.dart';
 /// get the default mapping.
 final cardEntityViewExtractor = Reader<CardEntity, CardEntityView>(
   (entity) => CardEntityView(
-    entity: entity,
+    source: entity,
     ref: entity.uuid.value
         .getOrElse(() => throw ArgumentError('Uuid field is missing!')),
     revision: entity.revision.value

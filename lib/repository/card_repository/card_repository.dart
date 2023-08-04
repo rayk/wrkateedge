@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:wrkateedge/app/features/cards/state/view_model/card_entity_view.dart';
 
 import '../../domain/entities/entities.dart';
 import '../../store/store.dart';
@@ -35,22 +34,22 @@ class CardRepository extends Equatable {
 
   /// Return all the domain card entities wrapped in [EntityView].
   /// which match the values in [request].
-  Task<IList<EntityView>> getCard(RepoRequest request) {
+  Task<IList<T>> getCard<T>(RepoRequest request) {
     throw UnimplementedError();
   }
 
-  Task<CardEntityView> patchCard(RepoRequest request) {
+  Task<T> patchCard<T>(RepoRequest request) {
     final payload = request.params[#payload] as CardEntity;
     return _dataStore.put(payload).map((a) => a.match(
         () => throw StateError('Put into store failed'),
         (t) => request.extractor.run(payload)));
   }
 
-  Task<IList<EntityView>> putCard(RepoRequest request) {
+  Task<IList<T>> putCard<T>(RepoRequest request) {
     throw UnimplementedError();
   }
 
-  Task<IList<EntityView>> deleteCard(RepoRequest request) {
+  Task<IList<T>> deleteCard<T>(RepoRequest request) {
     throw UnimplementedError();
   }
 

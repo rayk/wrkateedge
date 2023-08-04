@@ -110,12 +110,12 @@ class CardEntitySelectProvider extends AutoDisposeProvider<CardEntityView> {
   }
 }
 
-String _$cardNotifierHash() => r'ae18a2f1c5817c10e050f07ea817167e7df2484e';
+String _$cardNotifierHash() => r'30be95fb4f9dac5770dd07d1b781926a41ab87e5';
 
 /// See also [CardNotifier].
 @ProviderFor(CardNotifier)
 final cardNotifierProvider =
-    AutoDisposeAsyncNotifierProvider<CardNotifier, CardState>.internal(
+    AutoDisposeAsyncNotifierProvider<CardNotifier, CardFeatureModel>.internal(
   CardNotifier.new,
   name: r'cardNotifierProvider',
   debugGetCreateSourceHash:
@@ -124,6 +124,6 @@ final cardNotifierProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$CardNotifier = AutoDisposeAsyncNotifier<CardState>;
+typedef _$CardNotifier = AutoDisposeAsyncNotifier<CardFeatureModel>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

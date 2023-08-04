@@ -1,38 +1,48 @@
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:loggy/loggy.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:wrkateedge/app/features/cards/state/view_model/card_entity_view.dart';
-import 'package:wrkateedge/app/features/cards/state/view_model/extractors.dart';
+import 'package:wrkateedge/app/features/cards/state/model/card_feature_model.dart';
 import 'package:wrkateedge/repository/card_repository/card_repository.dart';
 
-part 'notifier.freezed.dart';
+import 'command/command.dart';
+
 part 'notifier.g.dart';
-part 'view_model/card_state.dart';
 
 @riverpod
 class CardNotifier extends _$CardNotifier with UiLoggy {
   late CardRepository _cardRepo;
 
   Future<IList<CardEntityView>> _fetchCards() async {
-    return await _cardRepo.getAllCards<CardEntityView>(
-        (extractor: cardEntityViewExtractor, params: {})).run();
+    return await _cardRepo.getAllCards<CardEntityView>((
+      extractor: cardEntityViewExtractor,
+      params: {},
+    )).run();
   }
 
   @override
-  Future<CardState> build() async {
+  Future<CardFeatureModel> build() async {
     _cardRepo = ref.watch<CardRepository>(cardRepositoryProvider);
 
     return await _cardRepo
-        .getAllCards<CardEntityView>(
-            (extractor: cardEntityViewExtractor, params: {}))
-        .map((cards) => CardState(
+        .getAllCards<CardEntityView>((
+          extractor: cardEntityViewExtractor,
+          params: {},
+        ))
+        .map((cards) => CardFeatureModel(
               uid: '',
               updatedOn: DateTime.now().toLocal(),
               cardViews: cards,
+              filter: CardFilter.all,
             ))
         .run();
+  }
+
+  /// Execute the passed in command.
+  Future<Unit> execute(CardCommand cmd) async {
+    loggy.debug('execute: $cmd');
+
+    return unit;
   }
 
   Future<Unit> toggleDefaultFlag(CardEntityView card) async {

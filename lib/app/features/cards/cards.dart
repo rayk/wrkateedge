@@ -5,7 +5,7 @@ library cards;
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:wrkateedge/app/features/cards/components/card_info_bar.dart';
+import 'package:wrkateedge/app/features/cards/components/card_cmd_bar.dart';
 import 'package:wrkateedge/app/features/cards/components/card_view.dart';
 import 'package:wrkateedge/app/features/cards/state/notifier.dart';
 
@@ -24,7 +24,7 @@ class CardFeature extends HookConsumerWidget {
               slivers: [
                 SliverAppBar(
                   key: appBarContainerKey,
-                  title: CardInfoBar(state: state),
+                  title: CardCommandBar(),
                 ),
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
